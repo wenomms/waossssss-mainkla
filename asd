@@ -1,9 +1,11 @@
+import java.io.*;
 import java.util.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.io.FileReader;
 /**
  *
  * @author ivand
@@ -41,11 +43,12 @@ public class Workarchiv {
                 
                 popcion= two.nextInt();
                 switch(popcion){
-                    
+                        
                     case 1:
             Scanner archivo_s = new Scanner(System.in);
             
             if(Nombre_Carrera.exists()){
+                
                 System.out.println("Registrese:");
                 System.out.println("codigo:");
                 String codigo_s = archivo_s.nextLine();
@@ -61,13 +64,15 @@ public class Workarchiv {
             try {
                 
                 FileWriter fw=new FileWriter(Nombre_Estudiantes, true);
-                fw.write("codigo \t Nombre \t\t\t Correo \t\t\t numero \t\t\t identificador de carrera \n");
-                fw.write(codigo_s + "\t\t\t " + Nombre_s + "\t\t\t " + correo + "\t\t\t" + Numero + "\t\t\t" + identificador_carrera +"\n");
+                fw.write("codigo \t\t Nombre \t\t\t Correo \t\t\t numero \t\t\t identificador de carrera \n");
+                fw.write(codigo_s + "\t " + Nombre_s + "\t\t\t " + correo + "\t\t\t" + Numero + "\t\t\t" + identificador_carrera +"\n");
                 fw.close();
             } catch (IOException ex) {
                 System.out.println("No existe la carpeta sobre los datos de la carrera");
             }
-        }
+        } else{
+            System.out.println("Registre su carrera");
+            }
                         
                             break;
                     case 2:
@@ -86,11 +91,11 @@ public class Workarchiv {
                 System.out.println("Nombre de la facultad:");
                 String Nombre_Facultad = archivo.nextLine();
                 FileWriter fw=new FileWriter(Nombre_Carrera, true);
-                fw.write("Indentificador de carrera \t Nombre \t\t\t Creditos \t\t\t modalidad \t\t\t Nombre de la facultad \n");
-                fw.write(identificador_carrera + "\t\t\t " + Nombre + "\t\t\t " + creditos + "\t\t\t" +modalidad + "\t\t\t"+Nombre_Facultad +"\n");
+                fw.write("Indentificador de carrera \t Nombre \t\t\t Creditos \t modalidad \t Nombre de la facultad \n");
+                fw.write(identificador_carrera + "\t\t " + Nombre + "\t " + creditos + "\t" +modalidad + "\t"+Nombre_Facultad +"\n");
                 fw.close();
             } catch (IOException ex) {
-                Logger.getLogger(Workarchiv.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("No se pudo cargar su carrera");
             }
             }else{
                 System.out.println("La carrera ya esta cargada");
